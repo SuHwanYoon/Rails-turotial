@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :todos
 
   get "/projects", to: "projects#index"
+  # new project를 추가하는 라우트 지정
+  get "/projects/new", to: "projects#new", as: "new_project"
   get "/projects/:id", to: "projects#show", as: "project"
+  post "/projects", to: "projects#create"
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

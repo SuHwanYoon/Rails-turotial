@@ -1,0 +1,12 @@
+<h1>New Project</h1>
+<%# form_with는 Rails 5.1부터 도입된 폼 헬퍼로, 모델 객체를 기반으로 폼을 생성합니다.%>
+<%# 구체적으로 하는 동작은 지정된 모델(@project)의 상태에 따라 적절한 HTTP 메서드(POST 또는 PATCH)와 액션 URL을 자동으로 결정하여 폼 태그를 생성합니다. %>
+<%= form_with model: @project do |f|  %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create Project" %>
+  </div>
+<% end %>
