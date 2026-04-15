@@ -15,7 +15,9 @@ default: &default
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: password
+# 아래 두 줄이 핵심입니다!
   host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
+  port: <%= ENV.fetch("DB_PORT") { 3306 } %>
 
 development:
   <<: *default
