@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   resources :todos
+  resources :projects
+  # # 이하는 참고용 경로
+  # get "/projects", to: "projects#index"
+  # # new project를 추가하는 라우트 지정
+  # get "/projects/new", to: "projects#new", as: "new_project"
+  # get "/projects/:id", to: "projects#show", as: "project"
+  # # project 항목을 edit하는 라우트 지정
+  # get "/projects/:id/edit", to: "projects#edit", as: "edit_project"
+  # post "/projects", to: "projects#create"
+  # # project:id항목을 update하는 patch method rails에서는 put을 거의안쓰고 patch를 씀
+  # patch "/projects/:id", to: "projects#update"
+  # # delete 경로를 추가
+  # delete "/projects/:id", to: "projects#destroy"
 
-  get "/projects", to: "projects#index"
-  # new project를 추가하는 라우트 지정
-  get "/projects/new", to: "projects#new", as: "new_project"
-  get "/projects/:id", to: "projects#show", as: "project"
-  post "/projects", to: "projects#create"
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

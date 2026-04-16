@@ -1,2 +1,5 @@
 <h1><%= @project.name %></h1>
 <p>Project detail comming soon</p>
+<%# Delete Project버튼을 추가하고 사제후 목록으로 돌아가게함 %>
+<%= button_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Back to Projects", projects_path %>
