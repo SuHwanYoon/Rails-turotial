@@ -1,5 +1,14 @@
 <h1><%= @project.name %></h1>
-<p>Project detail comming soon</p>
+<ul>
+    <% @project.todos.each do |todo| %>
+        <li>
+            <%= link_to todo.name, todo_path(todo) %>
+            <% if todo.completed %>V<% end %>
+            
+        </li>
+    <% end %>
+    
+</ul>
 <%# Delete Project버튼을 추가하고 사제후 목록으로 돌아가게함 %>
 <%= button_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" } %>
 <%= link_to "Back to Projects", projects_path %>

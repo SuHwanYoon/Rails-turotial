@@ -21,6 +21,23 @@
     <%= form.textarea :description %>
   </div>
 
+<%# completed는 완료여부를 체크박스로 표시합니다.%>
+  <div>
+    <%= form.label :completed, style: "display: block" %>
+    <%= form.check_box :completed %>
+  </div>
+<%# priotiry는 우선순위를 숫자로 입력받습니다.%>
+  <div>
+    <%= form.label :priority, style: "display: block" %>
+    <%= form.number_field :priority %>
+  </div>
+
+<%# projec_id는 Project 모델의 모든 데이터를 가져와서 이름으로 선택할 수 있는 셀렉트 박스를 생성합니다.%>
+  <div>
+    <%= form.label :project_id, style: "display: block" %>
+    <%= form.collection_select :project_id, Project.all, :id, :name, prompt:"Select a project" %>
+  </div>
+  
   <div>
     <%= form.submit %>
   </div>

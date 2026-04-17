@@ -64,7 +64,9 @@ class TodosController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    # Strong parameter의 역할은 사용자가 제출한 데이터 중 허용된 필드(name, description)만 
+    # 필터링하여 대량 할당(Mass Assignment) 취약점으로부터 애플리케이션을 보호하는 것이다
     def todo_params
-      params.expect(todo: [ :name, :description ])
+      params.expect(todo: [ :name, :description,  :completed, :priority, :project_id])
     end
 end
