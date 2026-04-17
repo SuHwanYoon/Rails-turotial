@@ -1,14 +1,46 @@
-<h1><%= @project.name %></h1>
-<ul>
-    <% @project.todos.each do |todo| %>
-        <li>
-            <%= link_to todo.name, todo_path(todo) %>
-            <% if todo.completed %>V<% end %>
-            
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <%= link_to "← Back to Projects", projects_path, class: "text-blue-600 hover:text-blue-800 font-medium mb-2 block" %>
+    <h1 class="text-4xl font-extrabold text-gray-900"><%= @project.name %></h1>
+  </div>
+  <div class="flex space-x-2">
+    <%= link_to "Edit", edit_project_path(@project), class: "bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded transition duration-200" %>
+    <%= button_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-2 px-4 rounded border border-red-200 transition duration-200" %>
+  </div>
+</div>
+
+<div class="bg-white shadow rounded-lg p-6 mb-8">
+  <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Project Todos</h2>
+  <ul class="space-y-3">
+    <% if @project.todos.any? %>
+      <% @project.todos.each do |todo| %>
+        <li class="flex items-center justify-between p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition">
+          <div class="flex items-center">
+            <% if todo.completed %>
+              <span class="text-green-500 mr-2">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="text-gray-500 line-through font-medium"><%= todo.name %></span>
+            <% else %>
+              <span class="text-gray-300 mr-2">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
+              <span class="text-gray-800 font-medium"><%= todo.name %></span>
+            <% end %>
+          </div>
+          <%= link_to "View Details", todo_path(todo), class: "text-blue-600 hover:text-blue-800 text-sm font-semibold" %>
         </li>
+      <% end %>
+    <% else %>
+      <p class="text-gray-500 italic text-center py-4">No todos for this project yet.</p>
     <% end %>
-    
-</ul>
-<%# Delete Project버튼을 추가하고 사제후 목록으로 돌아가게함 %>
-<%= button_to "Delete Project", project_path(@project), method: :delete, data: { confirm: "Are you sure?" } %>
-<%= link_to "Back to Projects", projects_path %>
+  </ul>
+  
+  <div class="mt-6 border-t pt-4">
+    <%= link_to "+ Add New Todo", new_todo_path(project_id: @project.id), class: "text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center" %>
+  </div>
+</div>

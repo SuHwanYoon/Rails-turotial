@@ -1,29 +1,30 @@
-<div id="<%= dom_id todo %>">
-  <div>
-    <strong>Name:</strong>
-    <%= todo.name %>
-  </div>
-
-  <div>
-    <strong>Description:</strong>
-    <%= todo.description %>
-  </div>
-
-
-  <div>
-    <strong>Completed:</strong>
-    <%= todo.completed %>
-  </div>
-
+<div id="<%= dom_id todo %>" class="bg-white border rounded-lg p-5 shadow-sm hover:shadow transition-shadow">
+  <div class="flex justify-between items-start mb-4">
     <div>
-    <strong>Priority:</strong>
-    <%= todo.priority %>
+      <h3 class="text-xl font-bold text-gray-900 mb-1"><%= todo.name %></h3>
+      <p class="text-gray-600 text-sm line-clamp-2"><%= todo.description %></p>
+    </div>
+    <div class="flex flex-col items-end">
+      <span class="px-2 py-1 rounded text-xs font-bold uppercase tracking-wider mb-2 <%= todo.completed ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %>">
+        <%= todo.completed ? 'Completed' : 'Pending' %>
+      </span>
+      <span class="text-xs text-gray-500 font-medium">
+        Priority: <span class="text-gray-900"><%= todo.priority %></span>
+      </span>
+    </div>
   </div>
 
-    <div>
-    <strong>Project:</strong>
-    <%# link_to는 HTML의 `<a>` 태그를 생성하는 Rails의 헬퍼 메서드입니다. %>
-    <%# project_path는 rails의 헬퍼메서드 이며 해당 프로젝트의 상세 페이지로 이동하는 링크를 생성합니다.%>
-    <%= link_to todo.project.name, project_path(todo.project) %>
+  <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+    <div class="flex items-center text-sm text-gray-500">
+      <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+      <%= link_to todo.project.name, project_path(todo.project), class: "hover:text-blue-600 underline decoration-blue-200" %>
+    </div>
+    
+    <div class="flex space-x-3 text-sm font-semibold">
+      <%= link_to "Details", todo, class: "text-blue-600 hover:text-blue-800" %>
+      <%= link_to "Edit", edit_todo_path(todo), class: "text-gray-600 hover:text-gray-800" %>
+    </div>
   </div>
 </div>

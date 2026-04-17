@@ -1,10 +1,40 @@
-<%# <p style="color: green"><%= notice %>
+<div class="mb-6">
+  <%= link_to "← Back to Todos", todos_path, class: "text-blue-600 hover:text-blue-800 font-medium mb-2 block" %>
+</div>
 
-<%= render @todo %>
+<div class="max-w-2xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100">
+  <div class="bg-gray-50 px-8 py-6 border-b border-gray-100 flex justify-between items-center">
+    <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Todo Details</h1>
+    <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider <%= @todo.completed ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %>">
+      <%= @todo.completed ? 'Completed' : 'In Progress' %>
+    </span>
+  </div>
 
-<div>
-  <%= link_to "Edit this todo", edit_todo_path(@todo) %> |
-  <%= link_to "Back to todos", todos_path %>
+  <div class="p-8">
+    <div class="mb-8">
+      <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Todo Name</h2>
+      <p class="text-2xl font-bold text-gray-800"><%= @todo.name %></p>
+    </div>
 
-  <%= button_to "Destroy this todo", @todo, method: :delete %>
+    <div class="mb-8">
+      <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Description</h2>
+      <p class="text-gray-600 leading-relaxed text-lg"><%= @todo.description %></p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8 mb-8">
+      <div>
+        <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Priority</h2>
+        <p class="text-xl font-semibold text-gray-800"><%= @todo.priority %></p>
+      </div>
+      <div>
+        <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Project</h2>
+        <p class="text-xl font-semibold text-blue-600 underline decoration-blue-200"><%= link_to @todo.project.name, project_path(@todo.project) %></p>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4 pt-6 border-t border-gray-100">
+      <%= link_to "Edit Todo", edit_todo_path(@todo), class: "flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 duration-200" %>
+      <%= button_to "Destroy", @todo, method: :delete, class: "flex-1 text-center bg-white hover:bg-red-50 text-red-600 font-bold py-3 px-6 rounded-lg border-2 border-red-100 hover:border-red-200 transition duration-200" %>
+    </div>
+  </div>
 </div>
